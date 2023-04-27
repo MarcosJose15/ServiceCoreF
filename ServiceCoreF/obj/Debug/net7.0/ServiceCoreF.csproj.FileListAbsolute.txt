@@ -3,3 +3,13 @@ C:\ServiceCoreF\ServiceCoreF\obj\Debug\net7.0\ServiceCoreF.GeneratedMSBuildEdito
 C:\ServiceCoreF\ServiceCoreF\obj\Debug\net7.0\ServiceCoreF.AssemblyInfoInputs.cache
 C:\ServiceCoreF\ServiceCoreF\obj\Debug\net7.0\ServiceCoreF.AssemblyInfo.cs
 C:\ServiceCoreF\ServiceCoreF\obj\Debug\net7.0\ServiceCoreF.csproj.CoreCompileInputs.cache
+C:\ServiceCoreF\ServiceCoreF\bin\Debug\net7.0\ServiceCoreF.exe
+C:\ServiceCoreF\ServiceCoreF\bin\Debug\net7.0\ServiceCoreF.deps.json
+C:\ServiceCoreF\ServiceCoreF\bin\Debug\net7.0\ServiceCoreF.runtimeconfig.json
+C:\ServiceCoreF\ServiceCoreF\bin\Debug\net7.0\ServiceCoreF.dll
+C:\ServiceCoreF\ServiceCoreF\bin\Debug\net7.0\ServiceCoreF.pdb
+C:\ServiceCoreF\ServiceCoreF\obj\Debug\net7.0\ServiceCoreF.dll
+C:\ServiceCoreF\ServiceCoreF\obj\Debug\net7.0\refint\ServiceCoreF.dll
+C:\ServiceCoreF\ServiceCoreF\obj\Debug\net7.0\ServiceCoreF.pdb
+C:\ServiceCoreF\ServiceCoreF\obj\Debug\net7.0\ServiceCoreF.genruntimeconfig.cache
+C:\ServiceCoreF\ServiceCoreF\obj\Debug\net7.0\ref\ServiceCoreF.dll

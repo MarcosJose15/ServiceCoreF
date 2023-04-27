@@ -249,7 +249,7 @@ namespace ServiceCoreF
             {
                 Console.WriteLine("EXCECAO: " + e.Message);
             }
-       }
+        }
 
         public static void BuscaChamadoPorMatricula(List<ChamadoStruct> ListaDeChamados)
         {
@@ -284,7 +284,7 @@ namespace ServiceCoreF
                 }
             }
         }
-    
+
         public static void ExcluiChamadoPorMatricula(ref List<ChamadoStruct> ListaDeChamados)
         {
             Console.WriteLine("Digite a matricula para excluir o chamado ou digite S para sair");
@@ -317,60 +317,62 @@ namespace ServiceCoreF
                 }
                 MostraMensagem("");
             }
-
-            static void Main(string[] args)
-            {
-                List<ChamadoStruct> ListaDeChamados = new List<ChamadoStruct>();
-                string opcao = "";
-                delimitadorInicio = "##### INICIO #####";
-                delimitadorFim = "##### FIM #####";
-                tagMatricula = "MATRICULA: ";
-                tagTitulo = "TITULO: ";
-                tagDataRelato = "DATA_DO_OCORRIDO: ";
-                tagDescricao = "DESCRIÇÃO: ";
-                tagPrioridade = "PRIORIDADE: ";
-                tagTipo = "TIPO: ";
-                tagStatus = "STATUS: ";
-
-                caminhoArquivo = @"baseDeDados.txt";
-
-                CarregaDados(caminhoArquivo, ref ListaDeChamados);
-
-                do
-                {
-                    Console.WriteLine("Pressione C para abrir um novo chamado");
-                    Console.WriteLine("Pressione B para buscar chamados abertos");
-                    Console.WriteLine("Pressione E para excluir um chamado");
-                    Console.WriteLine("Pressione S para sair");
-                    opcao = Console.ReadKey(true).KeyChar.ToString().ToLower();
-                    if (opcao == "c")
-                    {
-                        //Abrir chamado
-                        abrirChamado(ref ListaDeChamados);
-                    }
-                    else if (opcao == "b")
-                    {
-                        //Buscar chamado por matricula
-                        BuscaChamadoPorMatricula(ListaDeChamados);
-                    }
-                    else if (opcao == "e")
-                    {
-                        //Excluir chamado
-                        ExcluiChamadoPorMatricula(ref ListaDeChamados);
-                    }
-                    else if (opcao == "s")
-                    {
-                        //Sair da aplicação
-                        MostraMensagem("Encerrando o programa");
-                    }
-                    else
-                    {
-                        //Opção desconhecida
-                        MostraMensagem("Opção desconhecida");
-                    }
-                } while (opcao != "s");
-            }
         }
+        static void Main(string[] args)
+        {
+            List<ChamadoStruct> ListaDeChamados = new List<ChamadoStruct>();
+            
+            delimitadorInicio = "##### INICIO #####";
+            delimitadorFim = "##### FIM #####";
+            tagMatricula = "MATRICULA: ";
+            tagTitulo = "TITULO: ";
+            tagDataRelato = "DATA_DO_OCORRIDO: ";
+            tagDescricao = "DESCRIÇÃO: ";
+            tagPrioridade = "PRIORIDADE: ";
+            tagTipo = "TIPO: ";
+            tagStatus = "STATUS: ";
+
+            caminhoArquivo = @"baseDeDados.txt";
+
+            CarregaDados(caminhoArquivo, ref ListaDeChamados);
+
+            do
+            {
+                Console.WriteLine("Pressione C para abrir um novo chamado");
+                Console.WriteLine("Pressione B para buscar chamados abertos");
+                Console.WriteLine("Pressione E para excluir um chamado");
+                Console.WriteLine("Pressione S para sair");
+                string opcao = "";
+                opcao = Console.ReadKey(true).KeyChar.ToString().ToLower();
+                
+                if (opcao == "c")
+                {
+                    //Abrir chamado
+                    abrirChamado(ref ListaDeChamados);
+                }
+                else if (opcao == "b")
+                {
+                    //Buscar chamado por matricula
+                    BuscaChamadoPorMatricula(ListaDeChamados);
+                }
+                else if (opcao == "e")
+                {
+                    //Excluir chamado
+                    ExcluiChamadoPorMatricula(ref ListaDeChamados);
+                }
+                else if (opcao == "s")
+                {
+                    //Sair da aplicação
+                    MostraMensagem("Encerrando o programa");
+                }
+                else
+                {
+                    //Opção desconhecida
+                    MostraMensagem("Opção desconhecida");
+                }
+            } while (opcao != "s");
+        }
+
 
 
         public class Time
