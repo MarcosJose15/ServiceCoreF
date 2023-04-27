@@ -1,0 +1,5 @@
+C:\ServiceCoreF\ServiceCoreF\obj\Debug\net7.0\ServiceCoreF.csproj.AssemblyReference.cache
+C:\ServiceCoreF\ServiceCoreF\obj\Debug\net7.0\ServiceCoreF.GeneratedMSBuildEditorConfig.editorconfig
+C:\ServiceCoreF\ServiceCoreF\obj\Debug\net7.0\ServiceCoreF.AssemblyInfoInputs.cache
+C:\ServiceCoreF\ServiceCoreF\obj\Debug\net7.0\ServiceCoreF.AssemblyInfo.cs
+C:\ServiceCoreF\ServiceCoreF\obj\Debug\net7.0\ServiceCoreF.csproj.CoreCompileInputs.cache
