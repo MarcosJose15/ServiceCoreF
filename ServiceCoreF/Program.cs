@@ -7,21 +7,21 @@ using System.IO;
 
 namespace ServiceCoreF
 {
-    public class Program
+    internal class Program
     {
         static string delimitadorInicio = "";
         static string delimitadorFim = "";
-        static string tagMatricula; 
-        static string tagTitulo;
-        static string tagDataRelato;
-        static string tagDescricao;
-        static string tagPrioridade;
-        static string tagTipo;
-        static string tagStatus;
-        static string caminhoArquivo;
+        static string tagMatricula = "";
+        static string tagTitulo = "";
+        static string tagDataRelato = "";
+        static string tagDescricao = "";
+        static string tagPrioridade = "";
+        static string tagTipo = "";
+        static string tagStatus = "";
+        static string caminhoArquivo = "";
 
         //DadosCadastraisStruct
-        public struct ChamadoStruct
+        internal struct ChamadoStruct
         {
             public UInt32 Matricula;
             public string Titulo;
@@ -140,7 +140,7 @@ namespace ServiceCoreF
             //cadastraChamado.HorarioUltimaAtualizacao = new Time();
             abrirChamado.Tipo = "";
             abrirChamado.Status = "";
-            
+
 
             if (PegaUInt32(ref abrirChamado.Matricula, "Digite o número da matricula ou digite S para sair") == Resultado_e.Sair)
                 return Resultado_e.Sair;
@@ -153,13 +153,13 @@ namespace ServiceCoreF
 
             if (PegaString(ref abrirChamado.Prioridade, "Digite a prioridade do chamado ou digite S para sair") == Resultado_e.Sair)
                 return Resultado_e.Sair;
-            
-            if (PegaString(ref abrirChamado.Tipo , "Digite o tipo do chamado ou digite S para sair") == Resultado_e.Sair)
+
+            if (PegaString(ref abrirChamado.Tipo, "Digite o tipo do chamado ou digite S para sair") == Resultado_e.Sair)
                 return Resultado_e.Sair;
 
             if (PegaString(ref abrirChamado.Status, "Digite o status do chamado ou digite S para sair") == Resultado_e.Sair)
                 return Resultado_e.Sair;
-            
+
             ListaDeChamados.Add(abrirChamado);
             GravaDados(caminhoArquivo, ListaDeChamados);
             return Resultado_e.Sucesso;
@@ -179,9 +179,9 @@ namespace ServiceCoreF
                     conteudoArquivo += tagDescricao + chamado.Descricao + "\r\n";
                     //conteudoArquivo += tagNumeroDeDocumento + cadastro.NumeroDoDocumento + "\r\n";
                     conteudoArquivo += tagPrioridade + chamado.Prioridade + "\r\n";
-                    conteudoArquivo += tagTipo + chamado.Tipo+ "\r\n";
+                    conteudoArquivo += tagTipo + chamado.Tipo + "\r\n";
                     conteudoArquivo += tagStatus + chamado.Status + "\r\n";
-                    
+
                     conteudoArquivo += delimitadorFim + "\r\n";
                 }
                 File.WriteAllText(caminho, conteudoArquivo);
@@ -207,7 +207,7 @@ namespace ServiceCoreF
                     dadosCadastrais.Descricao = "";
                     dadosCadastrais.Prioridade = "";
                     dadosCadastrais.Tipo = "";
-                    dadosCadastrais.Status= "";
+                    dadosCadastrais.Status = "";
 
                     foreach (string linha in conteudoArquivo)
                     {
@@ -216,7 +216,7 @@ namespace ServiceCoreF
 
                         if (linha.Contains(delimitadorFim))
                             ListaDeChamados.Add(dadosCadastrais);
-                        
+
                         if (linha.Contains(tagMatricula))
                             dadosCadastrais.Matricula = Convert.ToUInt32(linha.Replace(tagMatricula, ""));
 
@@ -228,10 +228,10 @@ namespace ServiceCoreF
 
                         if (linha.Contains(tagDescricao))
                             dadosCadastrais.Descricao = linha.Replace(tagDescricao, "");
-                        
+
                         if (linha.Contains(tagPrioridade))
                             dadosCadastrais.Prioridade = linha.Replace(tagPrioridade, "");
-                        
+
                         if (linha.Contains(tagTipo))
                             dadosCadastrais.Tipo = linha.Replace(tagTipo, "");
 
@@ -239,9 +239,9 @@ namespace ServiceCoreF
                             dadosCadastrais.Status = linha.Replace(tagStatus, "");
 
                         //if (linha.Contains(tagNumeroDeDocumento))
-                            //dadosCadastrais.NumeroDoDocumento = linha.Replace(tagNumeroDeDocumento, "");
+                        //dadosCadastrais.NumeroDoDocumento = linha.Replace(tagNumeroDeDocumento, "");
 
-                        
+
                     }
                 }
             }
@@ -249,123 +249,132 @@ namespace ServiceCoreF
             {
                 Console.WriteLine("EXCECAO: " + e.Message);
             }
-        }
+       }
 
         public static void BuscaChamadoPorMatricula(List<ChamadoStruct> ListaDeChamados)
         {
             Console.WriteLine("Digite a matricula ou digite S para sair");
-            string temp = Console.ReadLine();
-            if (temp.ToLower() == "s")
+            string entrada = Console.ReadLine();
+            if (entrada.ToLower() == "s")
                 return;
             else
             {
-                List<ChamadoStruct> ListaDeChamadosTemp = ListaDeChamados.Where(x => x.Matricula == temp).ToList();
-                if(ListaDeChamadosTemp.Count>0)
+                if (UInt32.TryParse(entrada, out UInt32 temp))
                 {
-                    foreach(ChamadoStruct usuario in ListaDeChamadosTemp)
+                    List<ChamadoStruct> ListaDeChamadosTemp = ListaDeChamados.Where(x => x.Matricula == temp).ToList();
+                    if (ListaDeChamadosTemp.Count > 0)
                     {
-                        Console.WriteLine(tagMatricula + usuario.Matricula);
-                        Console.WriteLine(tagTitulo + usuario.Titulo);
-                        Console.WriteLine(tagDataRelato + usuario.DataRelato.ToString("dd/MM/yyyy"));
-                        Console.WriteLine(tagDescricao + usuario.Descricao);
-                        Console.WriteLine(tagPrioridade + usuario.Prioridade);
-                        Console.WriteLine(tagTipo + usuario.Tipo);
-                        Console.WriteLine(tagStatus + usuario.Status);
+                        foreach (ChamadoStruct usuario in ListaDeChamadosTemp)
+                        {
+                            Console.WriteLine(tagMatricula + usuario.Matricula);
+                            Console.WriteLine(tagTitulo + usuario.Titulo);
+                            Console.WriteLine(tagDataRelato + usuario.DataRelato.ToString("dd/MM/yyyy"));
+                            Console.WriteLine(tagDescricao + usuario.Descricao);
+                            Console.WriteLine(tagPrioridade + usuario.Prioridade);
+                            Console.WriteLine(tagTipo + usuario.Tipo);
+                            Console.WriteLine(tagStatus + usuario.Status);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Nenhum usuário possui a matricula: " + temp);
+                    }
+                    //
+                    MostraMensagem("");
+                }
+            }
+        }
+    
+        public static void ExcluiChamadoPorMatricula(ref List<ChamadoStruct> ListaDeChamados)
+        {
+            Console.WriteLine("Digite a matricula para excluir o chamado ou digite S para sair");
+            string entrada1 = Console.ReadLine();
+            bool chamadoExcluido = false;
+            if (entrada1.ToLower() == "s")
+            {
+                return;
+            }
+            else
+            {
+                if (UInt32.TryParse(entrada1, out UInt32 temp))
+                {
+                    List<ChamadoStruct> ListaDeChamadosTemp = ListaDeChamados.Where(x => x.Matricula == temp).ToList();
+                    if (ListaDeChamadosTemp.Count > 0)
+                    {
+                        foreach (ChamadoStruct chamado in ListaDeChamadosTemp)
+                        {
+                            ListaDeChamados.Remove(chamado);
+                            chamadoExcluido = true;
+                        }
+                        if (chamadoExcluido)
+                            GravaDados(caminhoArquivo, ListaDeChamados);
+                        Console.WriteLine(ListaDeChamadosTemp.Count + " usuário(s) com documento " + temp + " excluído(s)");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Nenhum usuário possui o documento: " + temp);
                     }
                 }
-                else
-                {
-                    Console.WriteLine("Nenhum usuário possui o documento: " + temp);
-                }
-                //
                 MostraMensagem("");
             }
-        }
 
-        public static void ExcluiChamadoPorMatricula(ref List<ChamadoStruct> ListaDeUsuarios)
-        {
-            Console.WriteLine("Digite o número do documento para excluir o usuário ou digite S para sair");
-            string temp = Console.ReadLine();
-            bool alguemFoiExcluido = false;
-            if (temp.ToLower() == "s")
-                return;
-            else
+            static void Main(string[] args)
             {
-                List<ChamadoStruct> ListaDeChamadosTemp = ListaDeChamados.Where(x => x.Matricula == temp).ToList();
-                if(ListaDeChamadosTemp.Count>0)
+                List<ChamadoStruct> ListaDeChamados = new List<ChamadoStruct>();
+                string opcao = "";
+                delimitadorInicio = "##### INICIO #####";
+                delimitadorFim = "##### FIM #####";
+                tagMatricula = "MATRICULA: ";
+                tagTitulo = "TITULO: ";
+                tagDataRelato = "DATA_DO_OCORRIDO: ";
+                tagDescricao = "DESCRIÇÃO: ";
+                tagPrioridade = "PRIORIDADE: ";
+                tagTipo = "TIPO: ";
+                tagStatus = "STATUS: ";
+
+                caminhoArquivo = @"baseDeDados.txt";
+
+                CarregaDados(caminhoArquivo, ref ListaDeChamados);
+
+                do
                 {
-                    foreach(ChamadoStruct chamado in ListaDeChamadosTemp)
+                    Console.WriteLine("Pressione C para abrir um novo chamado");
+                    Console.WriteLine("Pressione B para buscar chamados abertos");
+                    Console.WriteLine("Pressione E para excluir um chamado");
+                    Console.WriteLine("Pressione S para sair");
+                    opcao = Console.ReadKey(true).KeyChar.ToString().ToLower();
+                    if (opcao == "c")
                     {
-                        ListaDeUsuarios.Remove(chamado);
-                        alguemFoiExcluido = true;
+                        //Abrir chamado
+                        abrirChamado(ref ListaDeChamados);
                     }
-                    if (alguemFoiExcluido)
-                        GravaDados(caminhoArquivo, ListaDeUsuarios);
-                    Console.WriteLine(ListaDeChamadosTemp.Count + " usuário(s) com documento " + temp + " excluído(s)");
-                }
-                else
-                {
-                    Console.WriteLine("Nenhum usuário possui o documento: " + temp);
-                }
+                    else if (opcao == "b")
+                    {
+                        //Buscar chamado por matricula
+                        BuscaChamadoPorMatricula(ListaDeChamados);
+                    }
+                    else if (opcao == "e")
+                    {
+                        //Excluir chamado
+                        ExcluiChamadoPorMatricula(ref ListaDeChamados);
+                    }
+                    else if (opcao == "s")
+                    {
+                        //Sair da aplicação
+                        MostraMensagem("Encerrando o programa");
+                    }
+                    else
+                    {
+                        //Opção desconhecida
+                        MostraMensagem("Opção desconhecida");
+                    }
+                } while (opcao != "s");
             }
-            MostraMensagem("");
         }
 
-        static void Main(string[] args)
+
+        public class Time
         {
-            List<ChamadoStruct> ListaDeChamados= new List<ChamadoStruct>();
-            string opcao = "";
-            delimitadorInicio = "##### INICIO #####";
-            delimitadorFim = "##### FIM #####";
-            tagMatricula = "MATRICULA: ";
-            tagTitulo = "TITULO: ";
-            tagDataRelato = "DATA_DO_OCORRIDO: ";
-            tagDescricao = "DESCRIÇÃO: ";
-            tagPrioridade = "PRIORIDADE: ";
-            tagTipo = "TIPO: ";
-            tagStatus = "STATUS: ";
-
-            caminhoArquivo = @"baseDeDados.txt";
-
-            CarregaDados(caminhoArquivo, ref ListaDeChamados);
-
-            do
-            {
-                Console.WriteLine("Pressione C para abrir um novo chamado");
-                Console.WriteLine("Pressione B para buscar chamados abertos");
-                Console.WriteLine("Pressione E para excluir um chamado");
-                Console.WriteLine("Pressione S para sair");
-                opcao = Console.ReadKey(true).KeyChar.ToString().ToLower();
-                if (opcao == "c")
-                {
-                    //Abrir chamado
-                    abrirChamado(ref ListaDeChamados);   
-                }
-                else if (opcao == "b")
-                {
-                    //Buscar chamado por matricula
-                    BuscaChamadoPorMatricula(ListaDeChamados);
-                }
-                else if (opcao == "e")
-                {
-                    //Excluir chamado
-                    ExcluiChamadoPorMatricula(ref ListaDeChamados);
-                }
-                else if (opcao == "s")
-                {
-                    //Sair da aplicação
-                    MostraMensagem("Encerrando o programa");
-                }
-                else
-                {
-                    //Opção desconhecida
-                    MostraMensagem("Opção desconhecida");
-                }
-            } while (opcao != "s");
         }
-    }
-
-    public class Time
-    {
     }
 }
