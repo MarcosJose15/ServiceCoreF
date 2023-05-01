@@ -27,9 +27,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Oitavo_projeto
+namespace ServiceCoreF
 {
-    internal class CadastroChamado
+    internal class AbriChamado
     {
         //Atributos
         public string matricula;
@@ -79,7 +79,7 @@ namespace Oitavo_projeto
 
 
         //Construtor
-        public CadastroChamado(string matricula, string titulo, DateTime dataRelato, string descricao, string prioridade, string tipo, string status)
+        public AbriChamado(string matricula, string titulo, DateTime dataRelato, string descricao, string prioridade, string tipo, string status)
         {
             this.matricula = matricula;
             this.titulo = titulo;
