@@ -8,7 +8,7 @@ namespace ServiceCoreF
 {
     internal class InterfaceGrafica
     {
-        //Enum - trouxemos do projeto 7
+        //Enum
         public enum Resultado_e
         {
             Sucesso = 0,
@@ -16,7 +16,7 @@ namespace ServiceCoreF
             Excecao = 2
         }
 
-        //Métodos antigos - Trouxemos do projeto 7
+        //Métodos antigos
         public void MostraMensagem(string mensagem)
         {
             Console.WriteLine(mensagem);
