@@ -167,6 +167,7 @@ namespace ServiceCoreF
             return Resultado_e.Sucesso;
         }
 
+
         public void BuscaChamado()
         {
             Console.Clear();
@@ -187,6 +188,7 @@ namespace ServiceCoreF
             MostraMensagem("");
         }
 
+        [HttpDelete("{id}")]
         public void ExcluiChamado()
         {
             Console.Clear();

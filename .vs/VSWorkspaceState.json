@@ -1,10 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ServiceCoreF",
-    "\\ServiceCoreF\\bin\\Debug\\net7.0",
-    "\\ServiceCoreF\\bin\\Release"
+    "\\ServiceCoreF"
   ],
-  "SelectedNode": "\\ServiceCoreF\\Empregado.cs",
+  "SelectedNode": "\\ServiceCoreF\\AbriChamado.cs",
   "PreviewInSolutionExplorer": false
 }
